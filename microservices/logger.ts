@@ -5,6 +5,9 @@ import path from "path";
 dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
 const QUEUE = "logger";
+const EXCHANGE_ALL = "all";
+const EXCHANGE_A = "processorA";
+const EXCHANGE_B = "processorB";
 const AMQP_URL = process.env["AMQP_CONN_URL"];
 
 async function main() {
@@ -17,23 +20,28 @@ async function main() {
   const conn = await amqp.connect(AMQP_URL);
 
   // channel is the way to connect to the queues to receive / send messages
-  const ch1 = await conn.createChannel();
+  const channel = await conn.createChannel();
   // asserting a queue will indicate where the messages will come from
   // as a microservice u will only need to care about which queue ur messages come from
   // ideally, you should imagine each microservice has 1 queue.
   // when expanding, we can create more instances of the same microservice and
   // consume from the same queue
-  await ch1.assertQueue(QUEUE);
+  await channel.assertQueue(QUEUE);
+
+  // binds the queue to any exchanges it want to be part of
+  await channel.bindQueue(QUEUE, EXCHANGE_ALL, "");
+  await channel.bindQueue(QUEUE, EXCHANGE_A, "");
+  await channel.bindQueue(QUEUE, EXCHANGE_B, "");
 
   // Listener
-  ch1.consume(QUEUE, async (msg) => {
+  channel.consume(QUEUE, async (msg) => {
     if (msg !== null) {
       console.log(
         "[%s] API Gateway server received a task: %s",
         new Date().toLocaleTimeString(),
         msg.content.toString(),
       );
-      ch1.ack(msg);
+      channel.ack(msg);
     } else {
       console.log(
         "[%s] Consumer cancelled by server",
