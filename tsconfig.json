@@ -21,5 +21,6 @@
     "skipLibCheck": true,
     "noEmit": true,
     "forceConsistentCasingInFileNames": true
-  }
+  },
+  "exclude": ["microservices/*.js", "api-gateway/*.js", "start.js"]
 }

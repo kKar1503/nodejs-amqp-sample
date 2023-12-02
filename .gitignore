@@ -8,3 +8,6 @@ api-gateway/*.js
 
 # Node modules
 node_modules/**/*
+
+# Start script
+start.js

@@ -53,7 +53,7 @@ exec(buildCommand, (error, _, stderr) => {
   }
 
   // Execute the individual service
-  const server = exec(file, (serverError, serverStdout, serverStderr) => {
+  const server = exec(file, (serverError, _, serverStderr) => {
     if (serverError) {
       console.error(`Error starting server: ${serverError.message}`);
       return;

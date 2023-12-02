@@ -22,5 +22,6 @@
 
     "for-direction": "off",
     "@typescript-eslint/no-explicit-any": "off"
-  }
+  },
+  "ignorePatterns": ["microservices/*.js", "api-gateway/*.js", "start.js"]
 }
