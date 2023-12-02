@@ -28,14 +28,28 @@ async function main() {
   // Listener
   ch1.consume(QUEUE, async (msg) => {
     if (msg !== null) {
+      console.log(
+        "[%s] Received data from queue: %s",
+        new Date().toLocaleTimeString(),
+        msg.content.toString(),
+      );
       // msg.content gives the buffer that is passed over by the amqp
-      await handleTask(msg.content);
+      const data = await handleTask(msg.content);
+      console.log(
+        "[%s] Task handled: %s",
+        new Date().toLocaleTimeString(),
+        data,
+      );
       // ack will clear the task from the queue
       // in the case where something goes wrong in this service, use nack
       // nack basically means no acknowledge and will put the task back into the queue
+      // try change this to nack(msg) and observe what happens!
       ch1.ack(msg);
     } else {
-      console.log("Consumer cancelled by server");
+      console.log(
+        "[%s] Consumer cancelled by server",
+        new Date().toTimeString(),
+      );
     }
   });
 }
