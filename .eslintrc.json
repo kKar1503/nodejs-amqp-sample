@@ -20,6 +20,7 @@
     "no-empty": "warn",
     "no-cond-assign": ["error", "always"],
 
-    "for-direction": "off"
+    "for-direction": "off",
+    "@typescript-eslint/no-explicit-any": "off"
   }
 }
