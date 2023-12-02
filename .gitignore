@@ -1,0 +1,10 @@
+# Build outputs
+microservices/*.js
+api-gateway/*.js
+
+# Non example env
+.env*
+!.env*.example
+
+# Node modules
+node_modules/**/*
