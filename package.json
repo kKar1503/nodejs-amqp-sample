@@ -1,8 +1,5 @@
 {
   "name": "amqp-sample",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
   "scripts": {
     "start": "node start.js",
     "start:processorA": "nodemon --watch microservices/processor-a.ts --exec \"npm run start processorA\"",
@@ -10,9 +7,6 @@
     "start:logger": "nodemon --watch microservices/logger.ts --exec \"npm run start logger\"",
     "start:server": "nodemon --watch api-gateway/server.ts --exec \"npm run start apiGateway\""
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
     "amqplib": "^0.10.3",
     "dotenv": "^16.3.1"
