@@ -2,7 +2,7 @@ import amqp from "amqplib";
 import dotenv from "dotenv";
 import path from "path";
 
-dotenv.config({ path: path.resolve(process.cwd(), ".env.processor-A") });
+dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
 const QUEUE = "processorA";
 const AMQP_URL = process.env["AMQP_CONN_URL"];

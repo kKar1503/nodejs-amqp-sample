@@ -3,7 +3,7 @@ import http from "http";
 import dotenv from "dotenv";
 import path from "path";
 
-dotenv.config({ path: path.resolve(process.cwd(), ".env.server") });
+dotenv.config({ path: path.resolve(process.cwd(), ".env") });
 
 const AMQP_URL = process.env["AMQP_CONN_URL"];
 const PORT = process.env["PORT"];

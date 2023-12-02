@@ -32,45 +32,37 @@ exec(buildCommand, (error, _, stderr) => {
   }
 
   // Execute the service
-  let file, cwd;
+  let file;
   switch (processToRun) {
     case "processorA": {
-      file = "node processor-a.js";
-      cwd = "./microservices";
+      file = "node microservices/processor-a.js";
       break;
     }
     case "processorB": {
-      file = "node processor-b.js";
-      cwd = "./microservices";
+      file = "node microservices/processor-b.js";
       break;
     }
     case "logger": {
-      file = "node logger.js";
-      cwd = "./microservices";
+      file = "node microservices/logger.js";
       break;
     }
     case "apiGateway": {
-      file = "node server.js";
-      cwd = "./api-gateway";
+      file = "node api-gateway/server.js";
       break;
     }
   }
 
   // Execute the individual service
-  const server = exec(
-    file,
-    { cwd: cwd },
-    (serverError, serverStdout, serverStderr) => {
-      if (serverError) {
-        console.error(`Error starting server: ${serverError.message}`);
-        return;
-      }
-      if (serverStderr) {
-        console.error(`Server Error: ${serverStderr}`);
-        return;
-      }
-    },
-  );
+  const server = exec(file, (serverError, serverStdout, serverStderr) => {
+    if (serverError) {
+      console.error(`Error starting server: ${serverError.message}`);
+      return;
+    }
+    if (serverStderr) {
+      console.error(`Server Error: ${serverStderr}`);
+      return;
+    }
+  });
 
   // Prints out the service's stdout
   server.stdout?.on("data", (data) => {
