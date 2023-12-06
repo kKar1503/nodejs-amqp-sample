@@ -52,7 +52,7 @@ function requestHandler(channel: amqp.Channel) {
     const { url, method } = req;
     console.log(
       "[%s] Received a request: %s %s",
-      new Date().toLocaleTimeString(),
+      new Date().toISOString(),
       method,
       url,
     );
@@ -79,7 +79,7 @@ function requestHandler(channel: amqp.Channel) {
       );
       console.log(
         "[%s] Data published to %s: %s",
-        new Date().toLocaleTimeString(),
+        new Date().toISOString(),
         requestData.exchange,
         JSON.stringify(requestData.data),
       );

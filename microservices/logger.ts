@@ -38,14 +38,14 @@ async function main() {
     if (msg !== null) {
       console.log(
         "[%s] API Gateway server received a task: %s",
-        new Date().toLocaleTimeString(),
+        new Date().toISOString(),
         msg.content.toString(),
       );
       channel.ack(msg);
     } else {
       console.log(
         "[%s] Consumer cancelled by server",
-        new Date().toTimeString(),
+        new Date().toISOString(),
       );
     }
   });

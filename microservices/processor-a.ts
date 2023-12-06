@@ -36,16 +36,12 @@ async function main() {
     if (msg !== null) {
       console.log(
         "[%s] Received data from queue: %s",
-        new Date().toLocaleTimeString(),
+        new Date().toISOString(),
         msg.content.toString(),
       );
       // msg.content gives the buffer that is passed over by the amqp
       const data = await handleTask(msg.content);
-      console.log(
-        "[%s] Task handled: %s",
-        new Date().toLocaleTimeString(),
-        data,
-      );
+      console.log("[%s] Task handled: %s", new Date().toISOString(), data);
       // ack will clear the task from the queue
       // in the case where something goes wrong in this service, use nack
       // nack basically means no acknowledge and will put the task back into the queue
@@ -54,7 +50,7 @@ async function main() {
     } else {
       console.log(
         "[%s] Consumer cancelled by server",
-        new Date().toTimeString(),
+        new Date().toISOString(),
       );
     }
   });
