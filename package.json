@@ -2,10 +2,10 @@
   "name": "amqp-sample",
   "scripts": {
     "start": "node start.js",
-    "start:processorA": "nodemon --watch microservices/processor-a.ts --exec \"npm run start processorA\"",
-    "start:processorB": "nodemon --watch microservices/processor-b.ts --exec \"npm run start processorB\"",
-    "start:logger": "nodemon --watch microservices/logger.ts --exec \"npm run start logger\"",
-    "start:server": "nodemon --watch api-gateway/server.ts --exec \"npm run start apiGateway\""
+    "start:processorA": "nodemon --watch microservices/processor-a.ts --exec \"clear && npm run start processorA\"",
+    "start:processorB": "nodemon --watch microservices/processor-b.ts --exec \"clear && npm run start processorB\"",
+    "start:logger": "nodemon --watch microservices/logger.ts --exec \"clear && npm run start logger\"",
+    "start:server": "nodemon --watch api-gateway/server.ts --exec \"clear && npm run start apiGateway\""
   },
   "dependencies": {
     "amqplib": "^0.10.3",
